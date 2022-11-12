@@ -7,5 +7,9 @@ bestimmten Buchstaben bestehen.
 In die Variable $allowed beliebiege Wörter schreiben, die nur aus
 erlaubten Buchstaben bestehen.
 
+```
+php extract.php > docs/list.html
+```
+
 ## Akutelle Liste
-https://codeispoetry.github.io/erstlesen/list.txt
+https://codeispoetry.github.io/erstlesen/list.html

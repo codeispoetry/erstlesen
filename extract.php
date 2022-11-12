@@ -1,9 +1,9 @@
 <?php
 // phpcs:ignoreFile
 
-$allowed = 'Marla ali lamm lila malt o';
+$allowed_sentence = 'Marla ali lamm lila malt o';
 
-$allowed = array_values( array_unique( str_split( strToLower( str_replace( ' ', '', $allowed ) ) ) ) );
+$allowed = array_values( array_unique( str_split( strToLower( str_replace( ' ', '', $allowed_sentence ) ) ) ) );
 sort( $allowed );
 
 $words = file( 'words.txt' );
@@ -36,5 +36,33 @@ $words = array_filter($words, function( $word ) {
 $words = array_values( $words );
 
 sort($words);
-print_r($allowed);
-print_r($words);
+
+// Blank list
+//print_r($allowed);
+//print_r($words);
+
+echo "<html>
+<head><title>Erstlesen</title></head>
+<body>
+";
+echo '<h4>Erlaubte Buchstaben</h4>';
+printf('<p>Im Satz <em>%s</em> sind die %d Buchstaben <strong>%s</strong> enthalten.</p>',
+    $allowed_sentence, 
+    count($allowed),
+    join(' ', $allowed));
+
+printf('<h4>Damit sind %d Wörter möglich:</h4>', count( $words ) );
+$first = 'a';
+foreach( $words as $word ) {
+    $actual_first = substr($word, 0, 1); 
+    if($actual_first != $first ){
+        $first = $actual_first;
+        echo "<br>";
+    } 
+    echo $word . ' ';
+}
+//printf('<p>%s</p>', join(', ', $words));
+
+echo "
+</body>
+</html>";
